@@ -23,7 +23,7 @@ public final class CustomPortal extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
-        getLogger().info("Плагин на кастомные порталы успешно активирован!");
+        getLogger().info("Плагин на порталы из укрепленного сланца успешно активирован!");
     }
 
     @EventHandler
@@ -39,15 +39,16 @@ public final class CustomPortal extends JavaPlugin implements Listener {
 
         Block portalBlock = null;
 
-        if (blockAtFeet.getType() == Material.STRUCTURE_BLOCK) {
+        // НАСТРОЙКА: Теперь плагин строго ищет Укрепленный глубинный сланец (REINFORCED_DEEPSLATE)
+        if (blockAtFeet.getType() == Material.REINFORCED_DEEPSLATE) {
             portalBlock = blockAtFeet;
-        } else if (blockUnderFeet.getType() == Material.STRUCTURE_BLOCK) {
+        } else if (blockUnderFeet.getType() == Material.REINFORCED_DEEPSLATE) {
             portalBlock = blockUnderFeet;
         }
 
         if (portalBlock == null) return;
 
-        getLogger().info("Игрок " + player.getName() + " наступил на блок портала!");
+        getLogger().info("Игрок " + player.getName() + " наступил на блок укрепленного сланца!");
 
         Lectern lectern = findLecternNearby(portalBlock, 3);
         if (lectern == null) {
@@ -76,7 +77,7 @@ public final class CustomPortal extends JavaPlugin implements Listener {
                 Location targetLocation = new Location(world, x + 0.5, y, z + 0.5, player.getLocation().getYaw(), player.getLocation().getPitch());
 
                 player.teleport(targetLocation);
-                player.sendMessage("§d[Портал] Вы телепортированы на координаты: " + (int)x + " " + (int)y + " " + (int)z);
+                player.sendMessage("§9[Портал] Древняя рамка перенесла вас на: " + (int)x + " " + (int)y + " " + (int)z);
                 
             } catch (NumberFormatException e) {
                 player.sendMessage("§c[Портал] Ошибка чтения чисел в книге.");
