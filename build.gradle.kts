@@ -7,7 +7,10 @@ version = "1.0"
 
 repositories {
     mavenCentral()
-    maven("https://papermc.io")
+    maven {
+        name = "papermc"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
 }
 
 dependencies {
