@@ -1,5 +1,0 @@
-name: CustomPortal
-version: '1.0'
-main: com.myportal.CustomPortal
-api-version: '1.21'
-author: Player
